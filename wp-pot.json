@@ -1,0 +1,6 @@
+{
+  "src"     : "./",
+  "dist"    : "./i18n/aanmeegasaaral.pot",
+  "domain"  : "aanmeegasaaral",
+  "exclude" : "assets/,src/,node_modules/,vendor/"
+}
