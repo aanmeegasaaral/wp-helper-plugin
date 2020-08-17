@@ -57,8 +57,8 @@ class Post_Type extends Base {
 	 */
 	public function render_column( $post_id ) {
 		return <<<HTML
-<strong> 1-5 : </strong> <br/> <code>[narayaneeyam_lyrics id="${post_id}" from="1" to="5"]</code> <br/>
-<strong> 6-10 : </strong> <br/> <code>[narayaneeyam_lyrics id="${post_id}" from="6" to="10"]</code> <br/>
+<strong> 1-5 : </strong> <br/> [narayaneeyam_lyrics id="${post_id}" from="1" to="5"] <br/>
+<strong> 6-10 : </strong> <br/> [narayaneeyam_lyrics id="${post_id}" from="6" to="10"] <br/>
 HTML;
 
 	}

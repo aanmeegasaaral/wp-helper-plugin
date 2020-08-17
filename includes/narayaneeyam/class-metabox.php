@@ -38,6 +38,17 @@ class Metabox extends Base {
 			'save_type'     => false,
 			'theme'         => 'wp_modern',
 		), array( $this, 'content' ) );
+
+		wponion_metabox( array(
+			'context'       => 'side',
+			'option_name'   => '_narayaneeyam_dummy2',
+			'metabox_title' => __( 'Narayaneeyam Shortcodes' ),
+			'metabox_id'    => 'narayaneeyam_shortcodes',
+			'screens'       => array( 'narayaneeyam_lyrics' ),
+			'ajax'          => false,
+			'save_type'     => false,
+			'theme'         => 'wp_modern',
+		), array( $this, 'shortcodes' ) );
 	}
 
 	public function parts_field( $builder, $part ) {
@@ -83,5 +94,32 @@ class Metabox extends Base {
 		}
 		return $builder;
 
+	}
+
+	public function shortcodes() {
+		$pid     = get_the_ID();
+		$parts   = array(
+			'part1' => __( 'Part 1' ),
+			'part2' => __( 'Part 2' ),
+		);
+		$builder = wpo_builder();
+		foreach ( $parts as $id => $part ) {
+			$builder->subheading( $part );
+			$meta    = wpo_post_meta( '_narayaneeyam_' . $id );
+			$video   = $meta->get( 'video_link' );
+			$from    = $meta->get( 'from' );
+			$to      = $meta->get( 'to' );
+			$content = <<<HTML
+&lsqb;youtube-video id="${video}"&rsqb;
+<br/>
+<br/>
+&lsqb;narayaneeyam_lyrics id="${pid}" from="$from" to="$to"&rsqb;
+HTML;
+
+			$builder->content( $content );
+
+			//wpo_post_meta( '_narayaneeyam_part1' )
+		}
+		return $builder;
 	}
 }

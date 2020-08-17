@@ -47,6 +47,10 @@ $pre_txt
 
 [narayaneeyam_lyrics id="${id}" from="{$data['from']}" to="{$data['to']}"]
 
+&nbsp;
+
+&nbsp;
+
 $post_txt
 
 $signature 
@@ -64,7 +68,7 @@ TXT;
 					'tax_input'    => array(
 						'category' => aanmeegasaaral_option( 'narayaneeyam_category' ),
 					),
-					'post_name'    => 'narayaneeyam-' . $part_number,
+					'post_name'    => 'நாராயணியம்-' . $part_number,
 				);
 				$status  = wp_insert_post( $args );
 				if ( ! is_wp_error( $status ) ) {
