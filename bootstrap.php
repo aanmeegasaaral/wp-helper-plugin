@@ -54,6 +54,7 @@ final class Aanmeegasaaral extends Framework {
 	public function plugin_init() {
 		Register_Post_Type::instance();
 		\Aanmeegasaaral\Narayaneeyam\Shortcode::instance();
+		\Aanmeegasaaral\YouTube_Video_Shortcode::instance();
 		if ( is_admin() ) {
 			\Aanmeegasaaral\Narayaneeyam\Post_Creator::instance();
 		}
