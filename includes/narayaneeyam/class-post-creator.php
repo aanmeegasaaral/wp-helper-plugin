@@ -47,11 +47,13 @@ $pre_txt
 
 [narayaneeyam_lyrics id="${id}" from="{$data['from']}" to="{$data['to']}"]
 
-&nbsp;
-
-&nbsp;
+<br/>
+<br/>
 
 $post_txt
+
+<br/>
+<br/>
 
 $signature 
 TXT;
@@ -61,7 +63,6 @@ TXT;
 					$data['to'],
 				), $raw_title );
 				$args    = array(
-					'post_status'  => 'private',
 					'post_author'  => aanmeegasaaral_option( 'default_author', false ),
 					'post_content' => $content,
 					'post_title'   => $title,
@@ -104,11 +105,12 @@ HTML;
 		}
 
 		$select            = $builder->select( 'narayaneeyam_lyrics', __( 'Narayaneeyam Lyrics' ) )->query_args( array(
-			'post_type' => 'narayaneeyam_lyrics',
+			'post_type'      => 'narayaneeyam_lyrics',
+			'posts_per_page' => 10,
 		) )->select_framework( 'select2' )->ajax( true )->style( 'width:25%;' );
 		$select['options'] = 'post';
 		$builder->select( 'narayaneeyam_part', __( 'Narayaneeyam Part' ) )
-			->option( '' )
+			->option( '', __( 'All' ) )
 			->option( 'part1', __( 'Part 1' ) )
 			->option( 'part2', __( 'Part 2' ) )
 			->select_framework( 'select2' )
