@@ -42,6 +42,7 @@ final class Aanmeegasaaral extends Framework {
 				'ajax'           => true,
 				'search'         => false,
 				'menu'           => array(
+					'hook_priority'  => 999,
 					'page_title' => __( 'Settings' ),
 					'menu_title' => __( 'Settings' ),
 					'menu_slug'  => 'settings',
@@ -57,6 +58,7 @@ final class Aanmeegasaaral extends Framework {
 		\Aanmeegasaaral\YouTube_Video_Shortcode::instance();
 		if ( is_admin() ) {
 			\Aanmeegasaaral\Narayaneeyam\Post_Creator::instance();
+			\Aanmeegasaaral\Sivalaya_Magimai\Post_Creator::instance();
 		}
 	}
 
