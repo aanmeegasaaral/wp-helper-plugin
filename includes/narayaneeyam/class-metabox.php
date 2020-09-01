@@ -21,7 +21,7 @@ class Metabox extends Base {
 	public function __construct() {
 		wponion_metabox( array(
 			'option_name'   => '_narayaneeyam',
-			'metabox_title' => __( 'Narayaneeyam lyrics Information' ),
+			'metabox_title' => __( 'Narayaneeyam lyrics Information', 'aanmeegasaaral' ),
 			'metabox_id'    => 'narayaneeyam_lyrics_information',
 			'screens'       => array( 'narayaneeyam_lyrics' ),
 			'ajax'          => true,
@@ -31,7 +31,7 @@ class Metabox extends Base {
 
 		wponion_metabox( array(
 			'option_name'   => '_narayaneeyam_dummy',
-			'metabox_title' => __( 'Narayaneeyam lyrics' ),
+			'metabox_title' => __( 'Narayaneeyam lyrics', 'aanmeegasaaral' ),
 			'metabox_id'    => 'narayaneeyam_lyrics',
 			'screens'       => array( 'narayaneeyam_lyrics' ),
 			'ajax'          => false,
@@ -42,7 +42,7 @@ class Metabox extends Base {
 		wponion_metabox( array(
 			'context'       => 'side',
 			'option_name'   => '_narayaneeyam_dummy2',
-			'metabox_title' => __( 'Narayaneeyam Shortcodes' ),
+			'metabox_title' => __( 'Narayaneeyam Shortcodes', 'aanmeegasaaral' ),
 			'metabox_id'    => 'narayaneeyam_shortcodes',
 			'screens'       => array( 'narayaneeyam_lyrics' ),
 			'ajax'          => false,
@@ -51,30 +51,41 @@ class Metabox extends Base {
 		), array( $this, 'shortcodes' ) );
 	}
 
+	/**
+	 * @param \WPO\Builder $builder
+	 * @param              $part
+	 *
+	 * @since {NEWVERSION}
+	 */
 	public function parts_field( $builder, $part ) {
-		$field = $builder->fieldset( 'part' . $part );
-		$field->heading( __( 'Part' ) . ' - ' . $part );
+		$field = $builder->fieldset( 'part' . $part )->only_field( true );
+		$field->heading( __( 'Part', 'aanmeegasaaral' ) . ' - ' . $part );
 		$field->text( 'from', 'From Slokas' )
+			->horizontal( true )
 			->attribute( 'type', 'number' )
 			->attribute( 'min', '0' )
 			->attribute( 'max', '20' );
 		$field->text( 'to', 'To Slokas' )
+			->horizontal( true )
 			->attribute( 'type', 'number' )
 			->attribute( 'min', '0' )
 			->attribute( 'max', '20' );
 
-		$field->oembed( 'video_link', 'Youtube Video' );
+		$field->oembed( 'video_link', 'Youtube Video' )
+			->horizontal( true );
 	}
 
 	public function fields() {
 		$builder = wpo_builder();
 
-		$builder->text( 'dasakam_number', __( 'Dasakam Number' ) )
+		$builder->text( 'dasakam_number', __( 'Dasakam Number', 'aanmeegasaaral' ) )
 			->attribute( 'type', 'number' )
 			->attribute( 'min', '0' )
-			->attribute( 'max', '99999' );
+			->attribute( 'max', '99999' )
+			->horizontal( true );
 
-		$builder->text( 'title', __( 'Dasakam Title' ) );
+		$builder->text( 'title', __( 'Dasakam Title', 'aanmeegasaaral' ) )
+			->horizontal( true );
 		$this->parts_field( $builder, 1 );
 		$this->parts_field( $builder, 2 );
 		return $builder;
@@ -99,8 +110,8 @@ class Metabox extends Base {
 	public function shortcodes() {
 		$pid     = get_the_ID();
 		$parts   = array(
-			'part1' => __( 'Part 1' ),
-			'part2' => __( 'Part 2' ),
+			'part1' => __( 'Part 1', 'aanmeegasaaral' ),
+			'part2' => __( 'Part 2', 'aanmeegasaaral' ),
 		);
 		$builder = wpo_builder();
 		foreach ( $parts as $id => $part ) {
@@ -117,8 +128,6 @@ class Metabox extends Base {
 HTML;
 
 			$builder->content( $content );
-
-			//wpo_post_meta( '_narayaneeyam_part1' )
 		}
 		return $builder;
 	}

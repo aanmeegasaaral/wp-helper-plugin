@@ -26,9 +26,8 @@ class Settings extends Plugin_Settings {
 	 */
 	public function fields() {
 		$this->general();
-		$general = $this->builder->container( 'templates', __( 'Templates' ) );
+		$general = $this->builder->container( 'templates', __( 'Templates', 'aanmeegasaaral' ) );
 		$this->narayaneeyam( $general );
 		$this->sivalaya_magimai( $general );
 	}
-
 }

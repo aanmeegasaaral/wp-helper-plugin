@@ -18,9 +18,18 @@ class Post_Type extends Base {
 	 * Post_Type constructor.
 	 */
 	public function __construct() {
-		wponion_admin_columns( 'narayaneeyam_lyrics', __( 'Shortcode' ), array( &$this, 'render_column' ) );
+		wponion_admin_columns( 'narayaneeyam_lyrics', __( 'Part 1 Details', 'aanmeegasaaral' ), array(
+			&$this,
+			'render_part1_column',
+		) );
+		wponion_admin_columns( 'narayaneeyam_lyrics', __( 'Part 2 Details', 'aanmeegasaaral' ), array(
+			&$this,
+			'render_part2_column',
+		) );
+
 		add_filter( 'user_can_richedit', array( &$this, 'disable_wysiwyg_for_CPT' ) );
-		wponion_register_post_type( 'narayaneeyam_lyrics', __( 'Narayaneeyam Lyrics' ) )
+
+		wponion_register_post_type( 'narayaneeyam_lyrics', __( 'Narayaneeyam Lyrics', 'aanmeegasaaral' ) )
 			->publicly_queryable( false )
 			->has_archive( false )
 			->show_ui( true )
@@ -47,19 +56,23 @@ class Post_Type extends Base {
 		return $default;
 	}
 
-	/**
-	 * Renders Admin Column.
-	 *
-	 * @param $post_id
-	 *
-	 * @return string
-	 * @since {NEWVERSION}
-	 */
-	public function render_column( $post_id ) {
+	protected function render_part_details( $post_id, $part = 1 ) {
+		$data = wpo_post_meta( '_narayaneeyam_part' . $part, $post_id );
 		return <<<HTML
-<strong> 1-5 : </strong> <br/> [narayaneeyam_lyrics id="${post_id}" from="1" to="5"] <br/>
-<strong> 6-10 : </strong> <br/> [narayaneeyam_lyrics id="${post_id}" from="6" to="10"] <br/>
+<small>
+<span > From : {$data->get( 'from' )}</span><br/>
+<span > Till : {$data->get( 'to' )}</span><br/>
+<span > Video : {$data->get( 'video_link' )}</span><br/>
+<span > Shortcode : [narayaneeyam_lyrics id="${post_id}" from="{$data->get( 'from' )}" to="{$data->get( 'to' )}"]</span>
+</small>
 HTML;
+	}
 
+	public function render_part1_column( $post_id ) {
+		return $this->render_part_details( $post_id, 1 );
+	}
+
+	public function render_part2_column( $post_id ) {
+		return $this->render_part_details( $post_id, 2 );
 	}
 }

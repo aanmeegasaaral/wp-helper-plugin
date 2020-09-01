@@ -14,21 +14,21 @@ trait Narayaneeyam {
 		/**
 		 * @var \WPO\Container $general
 		 */
-		$general = $templates->container( 'narayaneeyam', __( 'Narayaneeyam' ) );
+		$general = $templates->container( 'narayaneeyam', __( 'Narayaneeyam', 'aanmeegasaaral' ) );
 
-		$general->text( 'narayaneeyam_post_title', __( 'Post Title' ) )->desc_field( array(
+		$general->text( 'narayaneeyam_post_title', __( 'Post Title', 'aanmeegasaaral' ) )->desc_field( array(
 			'`[dasakam_number]` To Get The Number',
 			'`[from]` To From Slokas Number',
 			'`[to]` To Get Till Slokas Number',
 		) )->style( 'width:50%;' );
 
-		$select            = $general->select( 'narayaneeyam_category', __( 'Narayaneeyam Category' ) )
+		$select            = $general->select( 'narayaneeyam_category', __( 'Narayaneeyam Category', 'aanmeegasaaral' ) )
 			->select_framework( 'select2' )
 			->multiple( true )
 			->style( 'width:50%;' );
 		$select['options'] = 'category';
 
-		$general->wp_editor( 'narayaneeyam_post_pre_txt', __( 'Post Before Slokas' ) );
-		$general->wp_editor( 'narayaneeyam_post_post_txt', __( 'Post After Slokas' ) );
+		$general->wp_editor( 'narayaneeyam_post_pre_txt', __( 'Post Before Slokas', 'aanmeegasaaral' ) );
+		$general->wp_editor( 'narayaneeyam_post_post_txt', __( 'Post After Slokas', 'aanmeegasaaral' ) );
 	}
 }

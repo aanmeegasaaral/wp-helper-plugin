@@ -7,8 +7,8 @@ defined( 'ABSPATH' ) || exit;
 class Post_Creator extends \VSP\Base {
 	public function __construct() {
 		wponion_admin_page( array(
-			'menu_title' => __( 'Sivalaya Magimai' ),
-			'page_title' => __( 'Sivalaya Magimai' ),
+			'menu_title' => __( 'Sivalaya Magimai', 'aanmeegasaaral' ),
+			'page_title' => __( 'Sivalaya Magimai', 'aanmeegasaaral' ),
 			'submenu'    => AANMEEGASAARAL_SLUG,
 			'render'     => array( &$this, 'render' ),
 			'on_load'    => array( &$this, 'onload' ),
@@ -75,7 +75,7 @@ TXT;
 HTML;
 		if ( isset( $this->status ) ) {
 			foreach ( $this->status as $id => $title ) {
-				$title = sprintf( __( 'Post Created %s' ), '<a href="' . get_edit_post_link( $id ) . '">' . $title . '</a>' );
+				$title = sprintf( __( 'Post Created %s', 'aanmeegasaaral' ), '<a href="' . get_edit_post_link( $id ) . '">' . $title . '</a>' );
 				echo wpo_field( 'notice_success', $title )->render();
 				echo '<br/>';
 			}
@@ -89,20 +89,20 @@ HTML;
 			}
 		}
 
-		$builder->text( 'episode', __( 'Episode' ) )
+		$builder->text( 'episode', __( 'Episode', 'aanmeegasaaral' ) )
 			->style( 'width:10%;' )
 			->js_validate( 'number' )
 			->placeholder( '58' );
 
-		$builder->text( 'temple_name', __( 'Temple Name' ) )
+		$builder->text( 'temple_name', __( 'Temple Name', 'aanmeegasaaral' ) )
 			->placeholder( 'அருள்மிகு அக்னீஸ்வரர் திருக்கோயில்(கஞ்சனூர்)' )
 			->style( 'width:50%;' );
 
-		$builder->text( 'video_link', __( 'Video Link' ) )
+		$builder->text( 'video_link', __( 'Video Link', 'aanmeegasaaral' ) )
 			->placeholder( 'https://youtu.be/NPFvumTkjlM' )
 			->style( 'width:25%;' );
 
-		$builder->wp_editor( 'temple_info', __( 'Temple Info' ) );
+		$builder->wp_editor( 'temple_info', __( 'Temple Info', 'aanmeegasaaral' ) );
 
 		/**
 		 * @var \WPO\Field $field
@@ -112,7 +112,7 @@ HTML;
 		}
 		echo '
 </div>
-<button type="submit" class="wpo-btn wpo-btn-success wpo-btn-sm" style="min-width:300px;">' . __( 'Create' ) . '</button>
+<button type="submit" class="wpo-btn wpo-btn-success wpo-btn-sm" style="min-width:300px;">' . __( 'Create', 'aanmeegasaaral' ) . '</button>
 </form>';
 	}
 }

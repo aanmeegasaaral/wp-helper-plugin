@@ -37,16 +37,16 @@ final class Aanmeegasaaral extends Framework {
 			),
 			'settings_page' => array(
 				'option_name'    => '_aanmeegasaaral_options',
-				'framework_desc' => sprintf( __( 'Custom %s Helper' ), AANMEEGASAARAL_NAME ),
+				'framework_desc' => sprintf( __( 'Custom %s Helper', 'aanmeegasaaral' ), AANMEEGASAARAL_NAME ),
 				'theme'          => 'wp',
 				'ajax'           => true,
 				'search'         => false,
 				'menu'           => array(
-					'hook_priority'  => 999,
-					'page_title' => __( 'Settings' ),
-					'menu_title' => __( 'Settings' ),
-					'menu_slug'  => 'settings',
-					'submenu'    => AANMEEGASAARAL_SLUG,
+					'hook_priority' => 999,
+					'page_title'    => __( 'Settings', 'aanmeegasaaral' ),
+					'menu_title'    => __( 'Settings', 'aanmeegasaaral' ),
+					'menu_slug'     => 'settings',
+					'submenu'       => AANMEEGASAARAL_SLUG,
 				),
 			),
 		) );
@@ -60,6 +60,10 @@ final class Aanmeegasaaral extends Framework {
 			\Aanmeegasaaral\Narayaneeyam\Post_Creator::instance();
 			\Aanmeegasaaral\Sivalaya_Magimai\Post_Creator::instance();
 		}
+	}
+
+	public function wp_admin_init() {
+		$this->create( '\Aanmeegasaaral\Admin\Admin' );
 	}
 
 	/**
